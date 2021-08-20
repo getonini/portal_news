@@ -1,0 +1,19 @@
+version: '3.3'
+
+networks:
+  portal_news:
+    driver: bridge
+
+services:
+  mongodb:
+    build: mongodb
+    environment:
+      TZ: America/Sao_Paulo
+      MONGO_USER: root
+      MONGO_PASSWORD: secret
+    ports:
+      - '27017:27017'
+    volumes:
+      - '${MONGO_DATA}:/data/db'
+    networks:
+      - portal_news
